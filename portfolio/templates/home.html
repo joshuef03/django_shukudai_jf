@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+
+<header class="row btn-light">
+    <div class="col-md-4">
+        <img src="{% static 'perfil.jpg' %}" alt="" width="350" height="250">
+    </div>
+    <div class="col-md-8 my-auto">
+        <h1> I'm <strong> BATMAN </strong></h1>
+        <h3> Ayuda! Tengo hambre </h3>
+        <p> ¡EL SEÑOR DE LA NOCHEEEEEE! </p>
+        <P> Intento dos. Lo que toca toca. Ya ni modo </p>
+        <a class="btn btn-primay btn-lg rounded-0 my-3" href="{% static 'curriculum.pdf' %}" target="_blank">Download CV</a>
+    </div>
+</header>
+<div class="row my-4 texte-center">
+    <h1>Mis proyectos </h1>
+    <p> ご幸福を祈ります </p>
+
+    {% for project in projects %}
+        <div class="col -md-4 p-4">
+            <div class="card card-project"  style="background-color: #3eaa9cc2;">
+                <h2>{{project.title}}</h2>
+                <p>{{project.description}}</p>
+                <img src ="{{project.image.url}}" alt="{{project.title}}" class="card-img-top">
+
+                {% if project.url %}
+                <a href=" {{project.url}}" class="btn btn-light rounded-0 btn-sm">{{project.url}}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+</div>
