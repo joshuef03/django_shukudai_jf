@@ -4,7 +4,7 @@ set -o errexit
 
 if [[ $CREATE_SUPERUSER ]];
 then
-  python django_shukudai_jf/manage.py createsuperuser --no-input
+  python manage.py createsuperuser --no-input
 fi
 
 pip install -r requirements.txt
