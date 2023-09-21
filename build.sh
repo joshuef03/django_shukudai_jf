@@ -9,6 +9,8 @@ python manage.py collectstatic --no-input
 python manage.py migrate
 
 chmod -R 755 media/
+touch /etc/nginx/conf.d/media.conf
+
 echo "location /public/ {
     alias /media/;
 }" > /etc/nginx/conf.d/media.conf
