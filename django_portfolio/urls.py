@@ -19,10 +19,12 @@ from django.urls import include,path
 from django.conf.urls.static import static
 from django.conf import settings
 from portfolio import views
+from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('blog/',include('blog.urls'))
+    path('blog/',include('blog.urls')),
+    path('ejecutar-comandos/', views.ejecutar_comandos, name='ejecutar-comandos')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
