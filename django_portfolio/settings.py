@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default=os.environ.get('DATABASE_URL_EXTERNAL'),
+        default='postgres://sqlazo4_user:ruYREgrSDEX6SGKMrAnBgcax2oUKKphj@dpg-clcfhcd4lnec73ckeqmg-a.oregon-postgres.render.com/sqlazo4',
         conn_max_age=600
     )
 }
