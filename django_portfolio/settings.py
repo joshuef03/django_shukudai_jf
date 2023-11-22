@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio',
     'blog',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +89,7 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://sqlazo4_user:ruYREgrSDEX6SGKMrAnBgcax2oUKKphj@dpg-clcfhcd4lnec73ckeqmg-a.oregon-postgres.render.com/sqlazo4',
+        default=os.environ.get('DATABASE_URL_EXTERNAL'),
         conn_max_age=600
     )
 }
@@ -134,10 +139,13 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/public/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+cloudinary.config(
+      cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+      api_key = os.environ.get('CLOUDINARY_API_KEY'),
+      api_secret = os.environ.get('CLOUDINARY_API_SECRET'),
+)
